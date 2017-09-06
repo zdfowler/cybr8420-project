@@ -1,0 +1,3 @@
+[submodule "keeweb"]
+	path = keeweb
+	url = https://github.com/keeweb/keeweb
