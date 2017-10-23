@@ -1,0 +1,38 @@
+Section 1 - Assurance cases
+1. Authentication - Keeweb's authentication prevents unauthorized access to users' password data.
+2. Encryption - Keeweb's encryption procedures sufficiently protect all sensitive user data before storage.
+3. Secure interaction with other software - Keeweb securely and properly communicates with authorized third 
+   party software for remote storage
+4. Recovery - Keeweb sufficiently protects password data in the event of damage or loss.
+
+*NEEDS REVIEW*
+5. Data Integrity - Keeweb protects from unauthorized changes to password data.
+
+
+Section 2 - Security requirements from misuse cases
+ 1. Authenticate all users before displaying password data
+    Source: Authentication/Integrity: Log in with master password
+ 2. Manage all password data on local machine to safeguard against attackers through the Internet.
+    Source - Authentication/Integrity: Log in from same device
+ 3. Automatically lock the app after a certain period of inactivity.
+    Source - Authentication/Integrity: Set automatic screen locking for 15 minutes
+ 4. Allow user to set the period of inactivity before the screen locks.
+    Source - Authentication/Integrity: Set automatic screen locking for 15 minutes
+ 5. Create a manual locking mechanism, so the user can choose to lock the app before the period 
+    of inactivity expires.
+    Source - Authentication/Integrity: Manually lock screen before leaving device unattended
+ 6. Encrypt password data file on the local machine.
+    Source - Encryption: Encrypt database file
+ 7. Before successful login, confirm the user's session before allowing access to password data.
+    Source - Secure Interaction: Authorize Third Party Service/Create Authorization Token
+ 8. Use secure protocols to perform transportation of password data.
+    Source - Secure Interaction: Use HTTS/TLS Transport
+ 9. Perform authorization of third party software that interacts with this app.
+    Source - Recovery/Integrity: Authorize Dropbox Account
+10. Allow the user to save backups of the password data to cloud-based services.
+    Source - Recovery/Integrity: Configures Backup
+
+Section 3 - Security requirements within documentation
+
+Section 4 - Security configuration issues within documentation
+
