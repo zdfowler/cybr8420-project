@@ -4,7 +4,6 @@ Section 1 - Assurance cases
 3. Secure interaction with other software - Keeweb securely and properly communicates with authorized third 
    party software for remote storage
 4. Recovery - Keeweb sufficiently protects password data in the event of damage or loss.
-
 *NEEDS REVIEW*
 5. Data Integrity - Keeweb protects from unauthorized changes to password data.
 
@@ -35,4 +34,8 @@ Section 2 - Security requirements from misuse cases
 Section 3 - Security requirements within documentation
 
 Section 4 - Security configuration issues within documentation
+1. The Keeweb app configuration does allow the user to send password data over networks. 
+   Source: FAQ
+2. All current auto-lock options are defaulted to false. 
+   Source: Issue 442 and app/scripts/views/settings/settings-general-view.js
 
