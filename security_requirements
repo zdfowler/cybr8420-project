@@ -22,10 +22,10 @@ Section 2 - Security requirements from misuse cases
     Source - Authentication/Integrity: Manually lock screen before leaving device unattended
  6. Encrypt password data file on the local machine.
     Source - Encryption: Encrypt database file
- 7. Before successful login, confirm the user's session before allowing access to password data.
+ 7. Before successful login to remote service, confirm the user's session before allowing access to password data.
     Source - Secure Interaction: Authorize Third Party Service/Create Authorization Token
- 8. Use secure protocols to perform transportation of password data.
-    Source - Secure Interaction: Use HTTS/TLS Transport
+ 8. Use secure protocols to perform transportation of password data file.
+    Source - Secure Interaction: Use HTTPS/TLS Transport
  9. Perform authorization of third party software that interacts with this app.
     Source - Recovery/Integrity: Authorize Dropbox Account
 10. Allow the user to save backups of the password data to cloud-based services.
