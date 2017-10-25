@@ -16,25 +16,44 @@ Section 2 - Security requirements from mis-use cases
 The following security requirements have been derived from an analysis of Use and Mis-Use cases.
 
  1. Authenticate all users before displaying password data
+ 
     Source: Authentication/Integrity: Log in with master password
+    
  2. Manage all password data on local machine to safeguard against attackers through the Internet.
+ 
     Source - Authentication/Integrity: Log in from same device
+    
  3. Automatically lock the app after a certain period of inactivity.
+ 
     Source - Authentication/Integrity: Set automatic screen locking for 15 minutes
+    
  4. Allow user to set the period of inactivity before the screen locks.
+ 
     Source - Authentication/Integrity: Set automatic screen locking for 15 minutes
+    
  5. Create a manual locking mechanism, so the user can choose to lock the app before the period 
     of inactivity expires.
+    
     Source - Authentication/Integrity: Manually lock screen before leaving device unattended
+    
  6. Encrypt password data file on the local machine.
+ 
     Source - Encryption: Encrypt database file
+    
  7. Before successful login to remote service, confirm the user's session before allowing access to password data.
+ 
     Source - Secure Interaction: Authorize Third Party Service/Create Authorization Token
+    
  8. Use secure protocols to perform transportation of password data file.
+ 
     Source - Secure Interaction: Use HTTPS/TLS Transport
+    
  9. Perform authorization of third party software that interacts with this app.
+ 
     Source - Recovery/Integrity: Authorize Dropbox Account
+     
 10. Allow the user to save backups of the password data to cloud-based services.
+
     Source - Recovery/Integrity: Configures Backup
 
 Section 3 - Alignment of security requirements with advertised features
