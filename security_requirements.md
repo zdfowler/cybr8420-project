@@ -1,4 +1,5 @@
 Section 1 - Assurance claims
+--------
 1. Authentication - Keeweb's authentication prevents unauthorized access to users' password data.
 2. Encryption - Keeweb's encryption procedures sufficiently protect all sensitive user data before storage.
 3. Secure interaction with other software - Keeweb securely and properly communicates with authorized third 
@@ -9,6 +10,8 @@ Section 1 - Assurance claims
 
 
 Section 2 - Security requirements from misuse cases
+-------
+
  1. Authenticate all users before displaying password data
     Source: Authentication/Integrity: Log in with master password
  2. Manage all password data on local machine to safeguard against attackers through the Internet.
@@ -31,7 +34,8 @@ Section 2 - Security requirements from misuse cases
 10. Allow the user to save backups of the password data to cloud-based services.
     Source - Recovery/Integrity: Configures Backup
 
-Section 3 - Security requirements alignment of security requirements with advertised features
+Section 3 - Alignment of security requirements with advertised features
+-------
 
 Advertised Features related to security requirements include offline use/access, ability to enable Dropbox sync, ability 
 to create memory-protected fields, built-in password generator, and use of recoverable password record histories.  
@@ -43,7 +47,9 @@ Other advertised features are related to user interface and input features, whic
 of the software.
 
 
-Section 4 - Security configuration issues within documentation
+Section 4 - Security configuration and installation issues within documentation
+------
+
 1. The Keeweb app configuration does allow the user to configure Keeweb to send password data over 
    networks. 
    Source: Keeweb Wiki - FAQ
