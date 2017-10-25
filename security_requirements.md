@@ -9,8 +9,11 @@ Section 1 - Assurance claims
 5. Data Integrity - Keeweb protects from unauthorized changes to password data.
 
 
-Section 2 - Security requirements from misuse cases
+Section 2 - Security requirements from mis-use cases
 -------
+[Mis-use case diagrams are available via Lucidchart here.](https://www.lucidchart.com/invitations/accept/70bd4364-1a62-4d1d-94f8-2f44f9fdb0fe).
+
+The following security requirements have been derived from an analysis of Use and Mis-Use cases.
 
  1. Authenticate all users before displaying password data
     Source: Authentication/Integrity: Log in with master password
