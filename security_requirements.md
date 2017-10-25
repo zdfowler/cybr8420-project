@@ -55,16 +55,25 @@ Section 4 - Security configuration and installation issues within documentation
 
 1. The Keeweb app configuration does allow the user to configure Keeweb to send password data over 
    networks. 
+   
    Source: Keeweb Wiki - FAQ
+   
 2. All current auto-lock options are defaulted to false. 
+
    Source: Issue 442 and app/scripts/views/settings/settings-general-view.js
+   
 3. Auto lock defaults to 15 minutes, which may be too large of an inactive period for people that 
    store password data for accounts with sensitive information.
+   
    Source: Keeweb Wiki - Configuration - JSON app config - "idleMinutes" : 15
+   
 4. Insecure HTTPS warnings can be configured to not be displayed.
+
    Source: Keeweb Wiki - Configuration - JSON app config - "skipHttpsWarning" : false (but can be 
            set to true)
-5. Some security features are present and advertised in web build of the application, though may not function in the
-   all builds of the application.  The distinctions are unclear to the casual user, and dependent on framework.
-   Source: Issue #422, Autolock on OS idle/lock is dependent on Electron subsystem. Issue #620: Clipboard clearing
-           function does not clear primary (middle click) clipboard on Linux.
+           
+5. Some security features are present and advertised in web build of the application, though may 
+   not function in the all builds of the application though advertised as a cross-platform product.  
+   The distinctions are unclear to the casual user, and dependent on framework.
+   
+   Source: Issue 422, Autolock on OS idle/lock is dependent on Electron subsystem. Issue 620: Clipboard clearing function does not clear primary (middle click) clipboard on Linux.
