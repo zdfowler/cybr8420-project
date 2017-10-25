@@ -7,5 +7,8 @@ Documents
 
 [Project Board](https://github.com/zdfowler/cybr8420-project/projects/1)
 
-[Assurance Claims](https://github.com/zdfowler/cybr8420-project/blob/master/assurance_cases) <br>
+[Assurance Claims](https://github.com/zdfowler/cybr8420-project/blob/master/assurance_cases) 
+
 [Assurance Cases](https://www.lucidchart.com/invitations/accept/d415ca37-8355-4351-af7a-2e02eaf8789b) (Requires LucidChart)
+
+[Security Requirements Discussion](https://github.com/zdfowler/cybr8420-project/blob/master/security_requirements.md)
