@@ -34,11 +34,13 @@ Section 2 - Security requirements from misuse cases
 Section 3 - Security requirements alignment of security requirements with advertised features
 
 Advertised Features related to security requirements include offline use/access, ability to enable Dropbox sync, ability 
-protected fields, password generator, history. 
+to create memory-protected fields, built-in password generator, and use of recoverable password record histories.  
 
-The advertised features primarily align with compatibility with the KeePass software and its password-database 
-format: KDBX. Support of this file format necessitates the proper structure of password data, use and 
-implementation of proper encryption.
+Several of the security requirements discussed derive from compatibility with the KeePass software KDBX file format. Support
+of this file format necessitates the proper structure of password data (integrity), and implementation of proper encryption.
+
+Other advertised features are related to user interface and input features, which do not related to security requirements 
+of the software.
 
 
 Section 4 - Security configuration issues within documentation
