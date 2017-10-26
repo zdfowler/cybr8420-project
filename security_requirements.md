@@ -10,49 +10,38 @@ Section 1 - Assurance claims
 
 Section 2 - Security requirements from mis-use cases
 -------
-[Mis-use case diagrams are available via Lucidchart here.](https://www.lucidchart.com/invitations/accept/70bd4364-1a62-4d1d-94f8-2f44f9fdb0fe).
+The following list outlines the security requirements which are captured in Mis-use case diagrams based on the assurance claims listed above.  [Mis-use case diagrams are available via Lucidchart here.](https://www.lucidchart.com/invitations/accept/70bd4364-1a62-4d1d-94f8-2f44f9fdb0fe).
 
-The following security requirements have been derived from an analysis of Use and Mis-Use cases.
 
- 1. Authenticate all users before displaying password data
- 
+ 1. All users must be authenticated before displaying password data<br>
     Source: Authentication/Integrity: Log in with master password
     
- 2. Manage all password data on local machine to safeguard against attackers through the Internet.
- 
+ 2. Manage all password data on local machine to safeguard against attackers through the Internet.<br>
     Source - Authentication/Integrity: Log in from same device
     
- 3. Automatically lock the app after a certain period of inactivity.
- 
+ 3. Automatically lock the app after a certain period of inactivity.<br>
     Source - Authentication/Integrity: Set automatic screen locking for 15 minutes
     
- 4. Allow user to set the period of inactivity before the screen locks.
- 
+ 4. Allow user to set the period of inactivity before the screen locks.<br>
     Source - Authentication/Integrity: Set automatic screen locking for 15 minutes
     
  5. Create a manual locking mechanism, so the user can choose to lock the app before the period 
-    of inactivity expires.
-    
+    of inactivity expires.<br>
     Source - Authentication/Integrity: Manually lock screen before leaving device unattended
     
- 6. Encrypt password data file on the local machine.
- 
+ 6. Encrypt password data file on the local machine.<br>
     Source - Encryption: Encrypt database file
     
- 7. Before successful login to remote service, confirm the user's session before allowing access to password data.
- 
+ 7. Before successful login to remote service, confirm the user's session before allowing access to password data.<br>
     Source - Secure Interaction: Authorize Third Party Service/Create Authorization Token
     
- 8. Use secure protocols to perform transportation of password data file.
- 
+ 8. Use secure protocols to perform transportation of password data file.<br>
     Source - Secure Interaction: Use HTTPS/TLS Transport
     
- 9. Perform authorization of third party software that interacts with this app.
- 
+ 9. Perform authorization of third party software that interacts with this app.<br>
     Source - Recovery/Integrity: Authorize Dropbox Account
      
-10. Allow the user to save backups of the password data to cloud-based services.
-
+10. Allow the user to save backups of the password data to cloud-based services.<br>
     Source - Recovery/Integrity: Configures Backup
     
 
