@@ -62,26 +62,13 @@ Interestingly, the final listed feature of the app is that it is Open Source sof
 Section 4 - Security configuration and installation issues within documentation
 ------
 
-1. The Keeweb app configuration does allow the user to configure Keeweb to send password data over 
-   networks. <br>   
-   Source: Keeweb Wiki - FAQ
+In examining documentation for security configuration and installation notes, the documentation artifacts included FAQs, Wiki, and the project Issue tracker.  Below are seveal items we found that may require investigation when evaluating how the software meets its security requirements which are also described.
+
+In terms of configuration the software has many defaults which can be overridden by configuration parameters or user actions by choice.  For example, HTTPS warnings can be disabled in configuration settings, configuration setings can be loaded at run time via URL parameter (and JSON file), auto-lock can be disabled, and database files can be saved without a master password.
+
+When installing the software on a static web server for your own purposes (a custom installation), more issues pop up related to cross-origin-request-sharing (CORS) and the security of hosting your own application and its communication both downstream to the client and upstream to the storage provider (if any outside of the browser local storage).
+
+Some security features are present and advertised in web build of the application, though may not function in the all builds of the application though advertised as a cross-platform product.  The distinctions are unclear to the casual user, and dependent on framework.<br>
+Source: Issue 422, Autolock on OS idle/lock is dependent on Electron subsystem (Mac OS vs. Win/Web/Linux). Issue 620: Clipboard clearing function does not clear primary (middle click) clipboard on Linux.
    
-2. All current auto-lock options are defaulted to false. <br>
-   Source: Issue 442 and app/scripts/views/settings/settings-general-view.js
-   
-3. Auto lock defaults to 15 minutes, which may be too large of an inactive period for people that 
-   store password data for accounts with sensitive information.<Br>
-   Source: Keeweb Wiki - Configuration - JSON app config - "idleMinutes" : 15
-   
-4. Insecure HTTPS warnings can be configured to not be displayed.<br>
-   Source: Keeweb Wiki - Configuration - JSON app config - "skipHttpsWarning" : false (but can be set to true)
-           
-5. Some security features are present and advertised in web build of the application, though may 
-   not function in the all builds of the application though advertised as a cross-platform product.  
-   The distinctions are unclear to the casual user, and dependent on framework.<br>
-   Source: Issue 422, Autolock on OS idle/lock is dependent on Electron subsystem. Issue 620: Clipboard clearing function does not clear primary (middle click) clipboard on Linux.
-   
-6. When creating a new KeeWeb database, password entries can be created and saved witout requiring a master password or choosing a
-   storage location outside of the browser's app storage.  Before the file is saved, KeeWeb warns the user about a blank master
-   password, but does not require one.  Nor does the software require remote storage or backup, potentially leading the user to 
-   misunderstand how the datafile is stored on disk.
+When creating a new KeeWeb database, i.e. a new installation, password entries can be created and saved witout requiring a master password or choosing a storage location outside of the browser's app storage.  Before the file is saved, KeeWeb warns the user about a blank master password, but does not require one.  Nor does the software require remote storage or backup, potentially leading the user to misunderstand how the datafile is stored on disk.
