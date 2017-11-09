@@ -12,3 +12,5 @@ Documents
 [Assurance Cases](https://www.lucidchart.com/invitations/accept/d415ca37-8355-4351-af7a-2e02eaf8789b) (Requires LucidChart)
 
 [Security Requirements Discussion](https://github.com/zdfowler/cybr8420-project/blob/master/security_requirements.md)
+
+[Threat Model Reflections and Summary](https://github.com/zdfowler/cybr8420-project/blob/master/threat_modeling.md)
