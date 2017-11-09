@@ -1,6 +1,6 @@
 
 
-Review the Microsoft Threat Modeling Tool report at ><.
+Review the Microsoft Threat Modeling Tool report at [this link](https://github.com/zdfowler/cybr8420-project/blob/master/threat_report_files/Final%20Keeweb%20Threat%20Report.htm). Download it as an HTML file.
 
 Summary of Findings
 ---
