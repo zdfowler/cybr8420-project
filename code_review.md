@@ -19,4 +19,6 @@ System (CWSS). Finally, we will either find a tool or create a Python script to 
 vulnerabilities discovered by the automated tool relate to the misuse cases or threat models, they will be documented and examined 
 manually to verify that they are critical vulnerabilities that need to be patched immediately.<br/>
 <br/>
+List of CWEs for Node.js (note that not all of these will be applicable to Keeweb):<br/>
+(https://github.com/jesusprubio/strong-node)["Node.js CWEs"]<br/>
 Keeweb Vulnerabilities<br/>
