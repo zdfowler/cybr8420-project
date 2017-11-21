@@ -21,4 +21,5 @@ manually to verify that they are critical vulnerabilities that need to be patche
 <br/>
 List of CWEs for Node.js (note that not all of these will be applicable to Keeweb):<br/>
 [Node.js CWEs](https://github.com/jesusprubio/strong-node)<br/>
+<br/>
 Keeweb Vulnerabilities<br/>
