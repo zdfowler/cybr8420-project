@@ -20,5 +20,5 @@ vulnerabilities discovered by the automated tool relate to the misuse cases or t
 manually to verify that they are critical vulnerabilities that need to be patched immediately.<br/>
 <br/>
 List of CWEs for Node.js (note that not all of these will be applicable to Keeweb):<br/>
-(https://github.com/jesusprubio/strong-node)["Node.js CWEs"]<br/>
+["Node.js CWEs"](https://github.com/jesusprubio/strong-node)<br/>
 Keeweb Vulnerabilities<br/>
