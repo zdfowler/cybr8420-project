@@ -17,4 +17,4 @@ Or, pipe this to a file for saving.
 pmd.bat -d c:\path\to\keewebsourc\ -R ecmascript-basic -t summaryhtml > summaryhtml.html
 ```
 
-Sample summary file here: [SummaryHtml.html]()
+Sample summary file here: [SummaryHtml.html](https://github.com/zdfowler/cybr8420-project/blob/master/pmd_work/summaryhtml.html) but be sure to save as html.
