@@ -22,14 +22,14 @@ manually to verify that they are critical vulnerabilities that need to be patche
 List of CWEs for Node.js (note that not all of these will be applicable to Keeweb):<br/>
 [Node.js CWEs](https://github.com/jesusprubio/strong-node)<br/>
 <br/>
-CWE's from Threat Modeling (Only threats with state of "Needs investigation"):
-CWE-266 - Incorrect Privilege Assignment
+CWE's from Threat Modeling (Only threats with state of "Needs investigation"):<br/>
+CWE-266 - Incorrect Privilege Assignment<br/>
 CWE-290 - Authentication Bypass by Spoofing<br/>
 <br/>
-CWE's from Misuse Cases:
-CWE-262 - Not Using Password Aging
-CWE-309 - Use of Password System for Primary Authentication
-CWE-88 - Argument Injection or Modification
-CWE-924 - Improper Enforcement of Message Integrity During Transmission in a Communication Channel
-
+CWE's from Misuse Cases:<br/>
+CWE-262 - Not Using Password Aging<br/>
+CWE-309 - Use of Password System for Primary Authentication<br/>
+CWE-88 - Argument Injection or Modification<br/>
+CWE-924 - Improper Enforcement of Message Integrity During Transmission in a Communication Channel<br/>
+<br/>
 Keeweb Vulnerabilities<br/>
