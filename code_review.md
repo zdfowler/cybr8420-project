@@ -14,10 +14,8 @@ Automated code review strategy<br/>
 Lisa will perform the automated code review for Keeweb. First, we will find and download a vulnerability scanning tool that can examine
 Javascript for Common Weakness Enumerations (CWEs). Second, we will use this scanner on Keeweb's code, narrowing it down to CWEs that 
 pertain to our misuse cases and threat models. Third, we will look at a subset of  the vulnerabilities and determine a false positive 
-percentage. Fourth, we will use the results of the vulnerability scanner to produce  input values for the Common Weakness Scoring 
-System (CWSS). Finally, we will either find a tool or create a Python script to calculate the CWSS score for Keeweb. If any of the 
-vulnerabilities discovered by the automated tool relate to the misuse cases or threat models, they will be documented and examined 
-manually to verify that they are critical vulnerabilities that need to be patched immediately.<br/>
+percentage. Finally, if any of the  vulnerabilities discovered by the automated tool relate to the misuse cases or threat models, they 
+will be documented and examined manually to verify that they are critical vulnerabilities that need to be patched immediately.<br/>
 <br/>
 List of CWEs for Node.js (note that not all of these will be applicable to Keeweb):<br/>
 [Node.js CWEs](https://github.com/jesusprubio/strong-node)<br/>
