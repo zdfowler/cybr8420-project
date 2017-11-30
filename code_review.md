@@ -53,7 +53,7 @@ Keeweb -the application- depends on a Javascript dependency by the same author, 
 1. In-memory encryption
 2. Datafile encryption
 
-__1. In memory encryption.__  In memory protection is accomplished using a SecureInput utility, in which a field's value is XORed with a random salt during input to create a ProtectedValue.  The ProtectedValue contains a "psuedo value", salt, and length, which is used to retrieve the record later.  This prevents in-memory inspection of any protected field.  When the data is written to disk, it is stored in the same format.
+__1. In memory encryption.__  In memory protection is accomplished using a SecureInput utility, in which a field's value is XORed with a random salt during input to create a ProtectedValue.  The ProtectedValue contains a "pseudo value", salt, and length, which is used to retrieve the record later.  This prevents in-memory inspection of any protected field.  When the data is written to disk, it is stored in the same format.
 
 Mitigates [CWE-316: Cleartext Storage of Sensitive Information in Memory](https://cwe.mitre.org/data/definitions/316.html)
 
