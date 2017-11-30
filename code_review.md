@@ -8,7 +8,7 @@ data.
 
 Manual code review strategy
 ---
-Zac will perform the manual code review strategy, since he has more Javascript experience and Keeweb's logic uses Javascript. The manual
+Zac will perform the manual code review, since he has more Javascript experience and Keeweb's logic uses Javascript. The manual
 strategy will look at the misuse cases and the threat models to create a list of potential vulnerabilities. Any vulnerabilities found
 will be documented and listed under the "Keeweb Vulnerabilities" section.<br/>
 
@@ -133,3 +133,6 @@ It appears that this is the only field in the entire project that does not have 
 
 The team intends to submit this to Keeweb for further review, but intends to track down the cause prior to creating the issue.
 
+Other Notes
+---
+As a team we discovered that the client-side web version offers little to no guidance to the user that the version they are running in-browser matches the latest version released from the source code.  Once the user has created either an empty database file, or loaded their own database (after login), the About section does list the current commit hash.  This also may be raised with the Keeweb development team, as the integrity of the software package could be compromised without any indication to the user.  
