@@ -41,7 +41,7 @@ Manual Code Review Results
 
 Transmit Data Securely (Third Party App Communication)
 ---
-Mitigated: [CWE-319: Cleartext Transmission of Sensitive Information](https://cwe.mitre.org/data/definitions/319.html)
+Addresses: [CWE-319: Cleartext Transmission of Sensitive Information](https://cwe.mitre.org/data/definitions/319.html)
 Keeweb uses a base storage model (`app\scripts\storage\storage-base.js`), which includes a default, and home-grown set of xhr functions for calling APIs for various storage providers (Google, Dropbox, OneDrive, etc).  For each of the third-party storage apps, the app's ID value is hard coded.  This should not yield a security issue, as the app developer's SECRET value is not coded with the app.
 
 For each service that calls XHR, no additional HTTPS (SSL/TLS) checks are in place aside from catching a generic "Network Error," only seen in the browser console log.  The underlying calls are caught by Chrome's engine, but no indication for the user is presented to indicate a miscommunication in the interface. Typically, the user is given a warning screen or "Not Secure" indicator in a URL.  This is not a security issue -- no traffic is sent to an insecure HTTPS connection -- but the lack of error message may lead to confusion on the user's behalf.
@@ -75,7 +75,11 @@ Keeweb data files that are loaded from browser file storage are read by the afor
 Because of the layered checks during authentication, and the previously mentioned in-memory salting, we get integrity for free.  The password data cannot be tampered with, without also breaking authentication because of the way values are stored.
 
 
+Summary of Manual Code Review
+---
+In examining the code with a manual review, Keeweb appears to segregate responsibility well between the application itself (`keeweb`), and the encryption/storage layer (`kdbxweb`).  After examining the code base, at least two underlying questions that have been plaguing the team have been as potential areas of concern.  First, the external communication does not errantly allow for cleartext transmission of data.  This can be a common pitfall for projects if they are not expecting HTTPS to break the connection degrades poorly.  However, no errors are shown to the user, which could be addressed.
 
+The second area of concern which the manual review addressed, is how password-entry data is protected in memory prior to being saved to disk.  Teh SecureInput model uses rounds of salts and XOR to protect from memory dumps, and the way Keeweb keeps all data stored as binary and encrypted -- even in browser storage -- is execellent.
 
 
 Automated Code Review Results
