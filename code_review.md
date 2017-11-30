@@ -87,5 +87,6 @@ The automated review analysis revealed an instance where ParseInt can interpret 
 2. Saving it to Dropbox (Save To -> Dropbox)
 
 When the file tries to sync during a routine sync operation, the following error is displayed at the top of the screen and the app:
-Error FileCorrupt: no key encryption rounds in header
+"Error FileCorrupt: no key encryption rounds in header"
+
 Also, the "Key Encryption Rounds" field (the one above the "Ask to change key after (days)") disappears from the screen, which explains the "No key encryption rounds in header" error.
