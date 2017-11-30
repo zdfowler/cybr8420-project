@@ -87,7 +87,7 @@ PMD found one instance of this issue. The issue with not supplying a base to Jav
 
 A closer look at the comment part of this function indicates that it is intended to be flexible with the base parameter. For example, if the function gets "20", it will return 20, but if the function gets "0x20", it will return 32. The comment preceding the ParseInt call indicates that it should be able to parse hex digits, as well as regular digits.
 
-Assignment In Operand (CWE-481 - Assigning instead of Comparing) 
+Assignment In Operand ([CWE-481 - Assigning instead of Comparing](https://cwe.mitre.org/data/definitions/481.html)) 
 --- 
 PMD found two instances of this potential vulnerability. Basically, PMD will flag any assignments within the Boolean check of an 'if' statement or a 'while' loop. The reason for flagging these is that it makes the code more difficult to read and it might be a bug if the code did an assignment '=', when they really wanted to do a Boolean check '==', In the case of Keeweb, both instances use the increment/decrement operand assignment '++' and '--'. This is similar to the syntax for a 'for' loop's last argument, so these are both false positives.
 
