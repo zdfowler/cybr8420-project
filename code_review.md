@@ -38,6 +38,16 @@ CWE-924 - Improper Enforcement of Message Integrity During Transmission in a Com
 
 Manual Code Review Results
 ---
+
+Transmit Data Securely (Third Party App Communication)
+====
+Keeweb uses a base storage model (`app\scripts\storage\storage-base.js`), which includes a default, and home-grown set of xhr functions for calling APIs for various storage providers (Google, Dropbox, OneDrive, etc).  For each of the third-party storage apps, the app's ID value is hard coded.  This should not yield a security issue, as the app developer's SECRET value is not coded with the app.
+
+For each service that calls XHR, no additional SSL/TLS checks are in place aside from catching a generic "Network Error."
+[more coming]
+
+
+
 Automated Code Review Results
 ---
 Keeweb uses Javascript for its logic, so we used PMD to analyze Keeweb. PMD is an open-source analysis tool written in Java. It can analyze a code repository and find coding issues, such as dead code, or bad coding practices, such as a function that returns different datatypes from different branches of the code. We downloaded the command line PMD and uses this to generate the total numbers for each type of flaw that was found, including the false positives. Then, we downloaded the Eclipse IDE and the PMD plugin for Eclipse. Running PMD on the code within Eclipse pinpoints the lines of code for each vulnerability. Using the PMD Eclipse plugin, we looked at the full set, or a subset of each type of flaw to determine the percentage of false positives. 
