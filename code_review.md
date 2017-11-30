@@ -85,6 +85,7 @@ CWE-450 - Multiple Interpretations Of UI Input/CWE-357 Insufficient Warning Of U
 The automated review analysis revealed an instance where ParseInt can interpret both hex numbers and regular numbers. Using this knowledge, we opened an instance of Keeweb and logged in with the master password. From the left-hand menu, we selected "New" and scrolled down to the "Advanced Settings" and entered a very large hex value in the "Ask to change key after (days)" field. Then, one of these two things caused a sync error:
 1. Saving it to the local system (Save button)
 2. Saving it to Dropbox (Save To -> Dropbox)
+
 When the file tries to sync during a routine sync operation, the following error is displayed at the top of the screen and the app:
 Error FileCorrupt: no key encryption rounds in header
 Also, the "Key Encryption Rounds" field (the one above the "Ask to change key after (days)") disappears from the screen, which explains the "No key encryption rounds in header" error.
