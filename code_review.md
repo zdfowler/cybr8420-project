@@ -45,6 +45,20 @@ Keeweb uses a base storage model (`app\scripts\storage\storage-base.js`), which 
 
 For each service that calls XHR, no additional HTTPS (SSL/TLS) checks are in place aside from catching a generic "Network Error," only seen in the browser console log.  The underlying calls are caught by Chrome's engine, but no indication for the user is presented to indicate a miscommunication in the interface. Typically, the user is given a warning screen or "Not Secure" indicator in a URL.  This is not a security issue -- no traffic is sent to an insecure HTTPS connection -- but the lack of error message may lead to confusion on the user's behalf.
 
+Encrypt Password Data
+---
+Keeweb -the application- depends on a Javascript dependency by the same author, named kdbxweb.js, wihhc performs almost all of the encryption work.  Two things happen during the keeweb application related to encrypting the password data, by access methods and libraries in kdbxweb.
+
+1. In-memory encryption
+2. Datafile encryption
+
+__1. In memory encryption.__  In memory protection is accomplished using a SecureInput utility, in wihch a field's value is XORed with a random salt during input to create a ProtectedValue.  The ProtectedValue contains a "psuedo value", salt, and length, which is used to retrieve the record later.  This prevents in-memory inspection of any protected field.  When the data is written to disk, it is stored in the same format.
+
+__2. Datafile encryption.__  KBDX supports several encryption types: AES and ChaCha20, depending on the KDBX cipher Id used when creating the file.  While Keeweb supports both, the default cipher that is used when creating a new datafile is AES (`kdbxweb/lib/format/kdbx.js:446-475`).  In addition to the data encryption, a "crsAlgorithm" is specified in each file header.  Howver, by default, the Salsa20 engine is used and users have expressed issues with this, in how the library attaches with Math.random() calls (which are not really random).  https://github.com/keeweb/keeweb/issues/104
+
+
+
+
 
 Automated Code Review Results
 ===
