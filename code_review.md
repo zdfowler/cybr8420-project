@@ -68,9 +68,11 @@ Backup Operations
 ---
 The Keeweb app has a backup setting which is checked on the File Open event.  If the file has not been backed up recently (or is past-due, according to the saved backup state), a scheduled backup will be performed immediately when the file is opened.  Keeweb uses an authenticated Dropbox storage location as the core backup storage location which provides protection against [CWE-530: Exposure of Backup File to an Unauthorized Control Sphere](http://cwe.mitre.org/data/definitions/530.html).
 
-Authentication
+Authentication & Integrity
 ---
 Keeweb data files that are loaded from browser file storage are read by the aforementioned `kdbxweb.js` library.  That library uses a SHA256 computed hash derived from the combination of a password and optionally an on-disk keyfile, known as a composite key.  The hash is used to open the binary data from either browser file storage, disk, or remote storage.  Several hash-style checks are performed by the file loader (`kdbxweb/lib/format/kdbx.js:63-96`).  If a header expected SHA hash value-check fails, if credential matching fails, or if any part of the stored file decyption failes, the data cannot be retreived.  Data in the KDBX format is organized in XML, and then compressed with a GZip algorithm prior to encryption, which adds one more layer of data compression.
+
+Because of the layered checks during authentication, and the previously mentioned in-memory salting, we get integrity for free.  The password data cannot be tampered with, without also breaking authentication because of the way values are stored.
 
 
 
