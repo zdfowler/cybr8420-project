@@ -52,5 +52,7 @@ Use Base with ParseInt (CWE-474 - Use of Function with Inconsistent Implementati
 
 Assignment In Operand (CWE-481 - Assigning instead of Comparing) - PMD found two instances of this potential vulnerability. Basically, PMD will flag any assignments within the Boolean check of an 'if' statement or a 'while' loop. The reason for flagging these is that it makes the code more difficult to read and it might be a bug if the code did an assignment '=', when they really wanted to do a Boolean check '==', In the case of Keeweb, both instances use the increment/decrement operand assignment '++' and '--'. This is similar to the syntax for a 'for' loop's last argument, so these are both false positives.
 
+Consistent Return (No CWE) - PMD found one instance where a function returned different types in different branches. This requires subsequent uses of this function to always check the type of the return variable before anything can be done with it. Although it is not a vulnerability, subsequent updates to Keeweb that use the function without the coder knowing that it returns different types in different branches can lead to more bugs and software crashes.
+
 Keeweb Vulnerabilities
 ---
