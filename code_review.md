@@ -41,7 +41,7 @@ Manual Code Review Results
 
 Transmit Data Securely (Third Party App Communication)
 ---
-Mitigated: (CWE-319: Cleartext Transmission of Sensitive Information)[https://cwe.mitre.org/data/definitions/319.html]
+Mitigated: [CWE-319: Cleartext Transmission of Sensitive Information](https://cwe.mitre.org/data/definitions/319.html)
 Keeweb uses a base storage model (`app\scripts\storage\storage-base.js`), which includes a default, and home-grown set of xhr functions for calling APIs for various storage providers (Google, Dropbox, OneDrive, etc).  For each of the third-party storage apps, the app's ID value is hard coded.  This should not yield a security issue, as the app developer's SECRET value is not coded with the app.
 
 For each service that calls XHR, no additional HTTPS (SSL/TLS) checks are in place aside from catching a generic "Network Error," only seen in the browser console log.  The underlying calls are caught by Chrome's engine, but no indication for the user is presented to indicate a miscommunication in the interface. Typically, the user is given a warning screen or "Not Secure" indicator in a URL.  This is not a security issue -- no traffic is sent to an insecure HTTPS connection -- but the lack of error message may lead to confusion on the user's behalf.
@@ -55,13 +55,13 @@ Keeweb -the application- depends on a Javascript dependency by the same author, 
 
 __1. In memory encryption.__  In memory protection is accomplished using a SecureInput utility, in wihch a field's value is XORed with a random salt during input to create a ProtectedValue.  The ProtectedValue contains a "psuedo value", salt, and length, which is used to retrieve the record later.  This prevents in-memory inspection of any protected field.  When the data is written to disk, it is stored in the same format.
 
-Mitigates CWE-316: Cleartext Storage of Sensitive Information in Memory
+Mitigates [CWE-316: Cleartext Storage of Sensitive Information in Memory](https://cwe.mitre.org/data/definitions/316.html)
 
 
 __2. Datafile encryption.__  KBDX supports several encryption types: AES and ChaCha20, depending on the KDBX cipher Id used when creating the file.  While Keeweb supports both, the default cipher that is used when creating a new datafile is AES (`kdbxweb/lib/format/kdbx.js:446-475`).  In addition to the data encryption, a "crsAlgorithm" is specified in each file header.  Howver, by default, the Salsa20 engine is used and users have expressed issues with this, in how the library attaches with Math.random() calls (which are not really random).  https://github.com/keeweb/keeweb/issues/104
 
-Potential weakness: CWE-327: Use of a Broken or Risky Cryptographic Algorithm; 
-CWE-330: Use of Insufficiently Random Values
+Potential weakness: [CWE-327: Use of a Broken or Risky Cryptographic Algorithm; ](CWE-327: Use of a Broken or Risky Cryptographic Algorithm)
+[CWE-330: Use of Insufficiently Random Values](http://cwe.mitre.org/data/definitions/330.html)
 
 
 
@@ -73,15 +73,15 @@ Keeweb uses Javascript for its logic, so we used PMD to analyze Keeweb. PMD is a
 
 The following is a description of what we found during the automated analysis:
 
-Inaccurate Numeric Literal (CWE-197 - Numeric Truncation Error)
+Inaccurate Numeric Literal ([CWE-197 - Numeric Truncation Error](https://cwe.mitre.org/data/definitions/197.html))
 --- 
 This issue occurs if integers are too large or floating point numbers are too precise. Basically, they could lose some precision during runtime. PMD flagged this issue 62 times in Keeweb. All but one were flagged on hex numbers; the longest hex number that was flagged was '0xffffffff', which is less than the valid value of '999999999999999' that PMD says is okay. The remaining one was flagged on a decimal number '0.10'. This is okay too, since the precision is only two decimal places (this error will not occur unless there are at least 13 digits after the decimal place). So, all 62 of these are false positives.
 
-Unreachable Code (CWE-561 - Dead Code) 
+Unreachable Code ([CWE-561 - Dead Code](https://cwe.mitre.org/data/definitions/561.html)) 
 --- 
 PMD found four instances of unreachable code. All four errors had the same description: "A 'return', 'break', 'continue', or 'throw' statement should be the last in the block." For each of these instances, it flagged on 'throw' statements, so all of these were false positives.
 
-Use Base with ParseInt (CWE-474 - Use of Function with Inconsistent Implementations)
+Use Base with ParseInt ([CWE-474 - Use of Function with Inconsistent Implementations](https://cwe.mitre.org/data/definitions/474.html))
 ---
 PMD found one instance of this issue. The issue with not supplying a base to Javascript's ParseInt is that different browsers will default to different values, leading to unpredictable behavior. The line of code that was flagged only supplies a value to ParseInt, whereas, good coding practice requires a value and a base. The subsequent code only throws an error if the value from ParseInt is not a number (NaN) or negative, so the overall function can return true for an incorrect positive number. This flagged line of code was found in the autotyping functions, so this could potentially allow someone to proceed with an invalid value if they run this code in an environment that gives ParseInt an unexpected base value, and supply the correct arguments to get the result they want from ParseInt. 
 
