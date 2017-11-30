@@ -43,9 +43,7 @@ Transmit Data Securely (Third Party App Communication)
 ====
 Keeweb uses a base storage model (`app\scripts\storage\storage-base.js`), which includes a default, and home-grown set of xhr functions for calling APIs for various storage providers (Google, Dropbox, OneDrive, etc).  For each of the third-party storage apps, the app's ID value is hard coded.  This should not yield a security issue, as the app developer's SECRET value is not coded with the app.
 
-For each service that calls XHR, no additional SSL/TLS checks are in place aside from catching a generic "Network Error."
-[more coming]
-
+For each service that calls XHR, no additional HTTPS (SSL/TLS) checks are in place aside from catching a generic "Network Error," only seen in the browser console log.  The underlying calls are caught by Chrome's engine, but no indication for the user is presented to indicate a miscommunication in the interface. Typically, the user is given a warning screen or "Not Secure" indicator in a URL.  This is not a security issue -- no traffic is sent to an insecure HTTPS connection -- but the lack of error message may lead to confusion on the user's behalf.
 
 
 Automated Code Review Results
