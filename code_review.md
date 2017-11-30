@@ -48,17 +48,17 @@ For each service that calls XHR, no additional HTTPS (SSL/TLS) checks are in pla
 
 Encrypt Password Data
 ---
-Keeweb -the application- depends on a Javascript dependency by the same author, named kdbxweb.js, wihhc performs almost all of the encryption work.  Two things happen during the keeweb application related to encrypting the password data, by access methods and libraries in kdbxweb.
+Keeweb -the application- depends on a Javascript dependency by the same author, named `kdbxweb.js`, which performs almost all of the encryption work.  Two things happen during the Keeweb application related to encrypting the password data, by access methods and libraries in kdbxweb.
 
 1. In-memory encryption
 2. Datafile encryption
 
-__1. In memory encryption.__  In memory protection is accomplished using a SecureInput utility, in wihch a field's value is XORed with a random salt during input to create a ProtectedValue.  The ProtectedValue contains a "psuedo value", salt, and length, which is used to retrieve the record later.  This prevents in-memory inspection of any protected field.  When the data is written to disk, it is stored in the same format.
+__1. In memory encryption.__  In memory protection is accomplished using a SecureInput utility, in which a field's value is XORed with a random salt during input to create a ProtectedValue.  The ProtectedValue contains a "psuedo value", salt, and length, which is used to retrieve the record later.  This prevents in-memory inspection of any protected field.  When the data is written to disk, it is stored in the same format.
 
 Mitigates [CWE-316: Cleartext Storage of Sensitive Information in Memory](https://cwe.mitre.org/data/definitions/316.html)
 
 
-__2. Datafile encryption.__  KBDX supports several encryption types: AES and ChaCha20, depending on the KDBX cipher Id used when creating the file.  While Keeweb supports both, the default cipher that is used when creating a new datafile is AES (`kdbxweb/lib/format/kdbx.js:446-475`).  In addition to the data encryption, a "crsAlgorithm" is specified in each file header.  Howver, by default, the Salsa20 engine is used and users have expressed issues with this, in how the library attaches with Math.random() calls (which are not really random).  https://github.com/keeweb/keeweb/issues/104
+__2. Datafile encryption.__  KBDX supports several encryption types: AES and ChaCha20, depending on the KDBX cipher Id used when creating the file.  While Keeweb supports both, the default cipher that is used when creating a new datafile is AES (`kdbxweb/lib/format/kdbx.js:446-475`).  In addition to the data encryption, a "crsAlgorithm" is specified in each file header.  However, by default, the Salsa20 engine is used and users have expressed issues with this, in how the library attaches with Math.random() calls (which are not really random).  https://github.com/keeweb/keeweb/issues/104
 
 Potential weakness: [CWE-327: Use of a Broken or Risky Cryptographic Algorithm; ](CWE-327: Use of a Broken or Risky Cryptographic Algorithm)
 [CWE-330: Use of Insufficiently Random Values](http://cwe.mitre.org/data/definitions/330.html)
@@ -70,7 +70,7 @@ The Keeweb app has a backup setting which is checked on the File Open event.  If
 
 Authentication & Integrity
 ---
-Keeweb data files that are loaded from browser file storage are read by the aforementioned `kdbxweb.js` library.  That library uses a SHA256 computed hash derived from the combination of a password and optionally an on-disk keyfile, known as a composite key.  The hash is used to open the binary data from either browser file storage, disk, or remote storage.  Several hash-style checks are performed by the file loader (`kdbxweb/lib/format/kdbx.js:63-96`).  If a header expected SHA hash value-check fails, if credential matching fails, or if any part of the stored file decyption failes, the data cannot be retreived.  Data in the KDBX format is organized in XML, and then compressed with a GZip algorithm prior to encryption, which adds one more layer of data compression.
+Keeweb data files that are loaded from browser file storage are read by the aforementioned `kdbxweb.js` library.  That library uses a SHA256 computed hash derived from the combination of a password and optionally an on-disk keyfile, known as a composite key.  The hash is used to open the binary data from either browser file storage, disk, or remote storage.  Several hash-style checks are performed by the file loader (`kdbxweb/lib/format/kdbx.js:63-96`).  If a header expected SHA hash value-check fails, if credential matching fails, or if any part of the stored file decryption fails, the data cannot be retrieved.  Data in the KDBX format is organized in XML, and then compressed with a GZip algorithm prior to encryption, which adds one more layer of data compression.
 
 Because of the layered checks during authentication, and the previously mentioned in-memory salting, we get integrity for free.  The password data cannot be tampered with, without also breaking authentication because of the way values are stored.
 
@@ -79,12 +79,14 @@ Summary of Manual Code Review
 ---
 In examining the code with a manual review, Keeweb appears to segregate responsibility well between the application itself (`keeweb`), and the encryption/storage layer (`kdbxweb`).  After examining the code base, at least two underlying questions that have been plaguing the team have been as potential areas of concern.  First, the external communication does not errantly allow for cleartext transmission of data.  This can be a common pitfall for projects if they are not expecting HTTPS to break the connection degrades poorly.  However, no errors are shown to the user, which could be addressed.
 
-The second area of concern which the manual review addressed, is how password-entry data is protected in memory prior to being saved to disk.  Teh SecureInput model uses rounds of salts and XOR to protect from memory dumps, and the way Keeweb keeps all data stored as binary and encrypted -- even in browser storage -- is execellent.
+The second area of concern which the manual review addressed, is how password-entry data is protected in memory prior to being saved to disk.  The SecureInput model uses rounds of salts and XOR to protect from memory dumps, and the way Keeweb keeps all data stored as binary and encrypted -- even in browser storage -- is excellent.
 
 
 Automated Code Review Results
 ===
 Keeweb uses Javascript for its logic, so we used PMD to analyze Keeweb. PMD is an open-source analysis tool written in Java. It can analyze a code repository and find coding issues, such as dead code, or bad coding practices, such as a function that returns different datatypes from different branches of the code. We downloaded the command line PMD and uses this to generate the total numbers for each type of flaw that was found, including the false positives. Then, we downloaded the Eclipse IDE and the PMD plugin for Eclipse. Running PMD on the code within Eclipse pinpoints the lines of code for each vulnerability. Using the PMD Eclipse plugin, we looked at the full set, or a subset of each type of flaw to determine the percentage of false positives. 
+
+A link to the PMD HTML output can be seen here: [PMD HTML (RAW) output](https://github.com/zdfowler/cybr8420-project/blob/master/pmd_work/summaryhtml.html)
 
 The following is a description of what we found during the automated analysis:
 
@@ -129,5 +131,5 @@ Also, the "Key Encryption Rounds" field (the one above the "Ask to change key af
 
 It appears that this is the only field in the entire project that does not have maxinput defined while also using a regex pattern match of "\d\*", therefore allowing the input to cause unexpected behavior.
 
-The team intends to submit this to keeweb for further review, but intends to track down the cause prior to creating the issue.
+The team intends to submit this to Keeweb for further review, but intends to track down the cause prior to creating the issue.
 
