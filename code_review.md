@@ -126,3 +126,8 @@ When the file tries to sync during a routine sync operation, the following error
 "Error FileCorrupt: no key encryption rounds in header"
 
 Also, the "Key Encryption Rounds" field (the one above the "Ask to change key after (days)") disappears from the screen, which explains the "No key encryption rounds in header" error.
+
+It appears that this is the only field in the entire project that does not have maxinput defined while also using a regex pattern match of "\d\*", therefore allowing the input to cause unexpected behavior.
+
+The team intends to submit this to keeweb for further review, but intends to track down the cause prior to creating the issue.
+
