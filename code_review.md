@@ -1,5 +1,5 @@
 Code review strategy
----
+===
 The code review will include both automated and manual code review. The review will cover the most important functionality of the
 Keeweb code. While the manual code review strategy will not cover all the Keeweb code, it will examine the code that is supposed to
 perform authentication, encrypt password data, maintain integrity, transmit data securely, and perform backups. The automated code 
@@ -7,13 +7,13 @@ review will cover all of the Keeweb code, but only look for the vulnerabilities 
 data.
 
 Manual code review strategy
----
+===
 Zac will perform the manual code review strategy, since he has more Javascript experience and Keeweb's logic uses Javascript. The manual
 strategy will look at the misuse cases and the threat models to create a list of potential vulnerabilities. Any vulnerabilities found
 will be documented and listed under the "Keeweb Vulnerabilities" section.<br/>
 
 Automated code review strategy
----
+===
 Lisa will perform the automated code review for Keeweb. First, we will find and download a vulnerability scanning tool that can examine
 Javascript for Common Weakness Enumerations (CWEs). Second, we will use this scanner on Keeweb's code, narrowing it down to CWEs that 
 pertain to our misuse cases and threat models. Third, we will look at a subset of  the vulnerabilities and determine a false positive 
@@ -21,33 +21,33 @@ percentage. Finally, if any of the  vulnerabilities discovered by the automated 
 will be documented and examined manually to verify that they are critical vulnerabilities that need to be patched immediately.
 
 List of CWEs for Node.js (note that not all of these will be applicable to Keeweb):
----
+===
 [Node.js CWEs](https://github.com/jesusprubio/strong-node)
 
 CWE's from Threat Modeling (Only threats with state of "Needs investigation")
----
+===
 CWE-266 - Incorrect Privilege Assignment<br/>
 CWE-290 - Authentication Bypass by Spoofing<br/>
 
 CWE's from Misuse Cases
----
+===
 CWE-262 - Not Using Password Aging<br/>
 CWE-309 - Use of Password System for Primary Authentication<br/>
 CWE-88 - Argument Injection or Modification<br/>
 CWE-924 - Improper Enforcement of Message Integrity During Transmission in a Communication Channel<br/>
 
 Manual Code Review Results
----
+===
 
 Transmit Data Securely (Third Party App Communication)
-====
+---
 Keeweb uses a base storage model (`app\scripts\storage\storage-base.js`), which includes a default, and home-grown set of xhr functions for calling APIs for various storage providers (Google, Dropbox, OneDrive, etc).  For each of the third-party storage apps, the app's ID value is hard coded.  This should not yield a security issue, as the app developer's SECRET value is not coded with the app.
 
 For each service that calls XHR, no additional HTTPS (SSL/TLS) checks are in place aside from catching a generic "Network Error," only seen in the browser console log.  The underlying calls are caught by Chrome's engine, but no indication for the user is presented to indicate a miscommunication in the interface. Typically, the user is given a warning screen or "Not Secure" indicator in a URL.  This is not a security issue -- no traffic is sent to an insecure HTTPS connection -- but the lack of error message may lead to confusion on the user's behalf.
 
 
 Automated Code Review Results
----
+===
 Keeweb uses Javascript for its logic, so we used PMD to analyze Keeweb. PMD is an open-source analysis tool written in Java. It can analyze a code repository and find coding issues, such as dead code, or bad coding practices, such as a function that returns different datatypes from different branches of the code. We downloaded the command line PMD and uses this to generate the total numbers for each type of flaw that was found, including the false positives. Then, we downloaded the Eclipse IDE and the PMD plugin for Eclipse. Running PMD on the code within Eclipse pinpoints the lines of code for each vulnerability. Using the PMD Eclipse plugin, we looked at the full set, or a subset of each type of flaw to determine the percentage of false positives. 
 
 The following is a description of what we found during the automated analysis:
@@ -63,4 +63,4 @@ Assignment In Operand (CWE-481 - Assigning instead of Comparing) - PMD found two
 Consistent Return (No CWE) - PMD found one instance where a function returned different types in different branches. This requires subsequent uses of this function to always check the type of the return variable before anything can be done with it. Although it is not a vulnerability, subsequent updates to Keeweb that use the function without the coder knowing that it returns different types in different branches can lead to more bugs and software crashes.
 
 Keeweb Vulnerabilities
----
+===
